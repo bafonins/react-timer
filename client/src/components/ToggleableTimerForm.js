@@ -11,20 +11,35 @@ class ToggleableTimerForm extends Component {
         };
     }
 
+    openEditForm = () => {
+        this.setState({ isOpen: true });
+    }
+
+    closeEditForm = () => {
+        this.setState({ isOpen: false });
+    }
+
+    submitEditForm = () => {
+
+    }
+
     render() {
         if (this.state.isOpen) {
             return (
                 <TimerForm
-
+                    closeEditForm={ this.closeEditForm }
+                    title={ this.props.title }
+                    project={ this.props.project }
                 />
             );
         } else {
             return (
-                <div className='ui basic content center aligned segment'>
+                <div className="ui basic content center aligned segment">
                 <button
-                    className='ui basic button icon'
+                    onClick={ this.openEditForm }
+                    className="ui basic button icon"
                 >
-                    <i className='plus icon' />
+                    <i className="plus icon" />
                 </button>
                 </div>
             );
