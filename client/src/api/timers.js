@@ -26,7 +26,7 @@ export const createTimer = (timer) => {
     );
 }
 
-export const updateTimer = (timer) => {
+export const editTimer = (timer) => {
     return request(
         fetch(BASE_PATH, {
             method: 'PUT',
