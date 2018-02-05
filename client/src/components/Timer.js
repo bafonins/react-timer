@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getElapsedTimeString } from '../utils/timers';
+import TimerButton from './TimerButton';
 
 class Timer extends Component {
     
@@ -37,9 +38,7 @@ class Timer extends Component {
                         </span>
                     </div>
                 </div>
-                <div className="ui bottom attached green basic button">
-                    Start
-                </div>
+                <TimerButton isOn={ false } />
             </div>
         );
     }
