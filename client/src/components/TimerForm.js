@@ -48,12 +48,12 @@ class TimerForm extends Component {
                             </div>
                             <div className="ui two bottom">
                                 <button 
-                                    className="ui basic primary button" 
+                                    className="ui basic primary button left floated" 
                                     type="submit"
                                     onClick={ () => {this.handleFormSubmit()} }>
                                     { submitBtnText }
                                 </button>
-                                <button className="ui basic negative button" onClick={ this.props.closeEditForm }>
+                                <button className="ui basic negative button right floated" onClick={ this.props.closeEditForm }>
                                     Cancel
                                 </button>
                             </div>
