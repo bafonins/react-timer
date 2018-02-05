@@ -1,8 +1,14 @@
+// vendors
 import React, { Component } from 'react';
+import uuid from 'uuid';
+
+//style
 import 'semantic-ui-css/semantic.min.css';
 import './App.css';
-import uuid from 'uuid';
+
+// custom
 import { createTimer } from './utils/timers';
+import { fetchTimers } from './api/timers';
 
 // components
 import EditableTimerList from './components/EditableTimerList';
