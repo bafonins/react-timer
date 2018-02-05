@@ -11,6 +11,14 @@ class Timer extends Component {
     pauseTimer = () => {
         this.props.pauseTimer(this.props.id);
     }
+
+    componentDidMount() {
+        this.intervalUpdateID = setInterval(() => this.forceUpdate(), 100);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.intervalUpdateID);
+    }
     
     render() {
         const elapsedVal = getElapsedTimeString({

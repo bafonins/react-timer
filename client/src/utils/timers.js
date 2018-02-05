@@ -18,9 +18,18 @@ export const getElapsedTimeString = (timer) => {
         elapsed += Date.now() - timer.runningSince;
     }
 
-    const s = Math.floor((elapsed / 1000) % 60);
-    const m = Math.floor((elapsed / 1000 / 60) % 60);
-    const h = Math.floor(elapsed / 1000 / 60 / 60);
+    function formatElapsed(val) {
+
+        if ((val + '').length === 1) {
+            return '0' + val;
+        } else {
+            return val + '';
+        }
+    }
+
+    const s = formatElapsed(Math.floor((elapsed / 1000) % 60));
+    const m = formatElapsed(Math.floor((elapsed / 1000 / 60) % 60));
+    const h = formatElapsed(Math.floor(elapsed / 1000 / 60 / 60));
 
     return `${h}:${m}:${s}`;
 }
