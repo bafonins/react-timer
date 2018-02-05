@@ -11,35 +11,48 @@ class TimerForm extends Component {
         };
     }
 
+    handleFormSubmit = () => {
+        this.props.submitEditForm(this.state.title, this.state.project);
+    }
+
     render() {
+        const submitBtnText = this.props.id 
+            ? 'Edit'
+            : 'Create';
+
         return (
             <div className="ui centered card">
                 <div className="content">
                     <div className="ui form">
-                        <div className="field">
-                            <label>Title</label>
-                            <input 
-                                type="text" 
-                                value={ this.state.title }
-                                onChange={ (e) => { this.setState({ title: e.target.value });}}
-                            />
-                        </div>
-                        <div className="field">
-                            <label>Project</label>
-                            <input 
-                                type="text"
-                                value={ this.state.project }
-                                onChange={ (e) => { this.setState({ project: e.target.value });}}
-                            />
-                        </div>
-                        <div className="ui two bottom">
-                            <button className="ui basic primary button">
-                                Submit
-                            </button>
-                            <button className="ui basic negative button" onClick={ this.props.closeEditForm }>
-                                Cancel
-                            </button>
-                        </div>
+                        <form onSubmit={ (e) => { e.preventDefault(); }}>
+                            <div className="field">
+                                <label>Title</label>
+                                <input 
+                                    type="text" 
+                                    value={ this.state.title }
+                                    onChange={ (e) => { this.setState({ title: e.target.value });}}
+                                />
+                            </div>
+                            <div className="field">
+                                <label>Project</label>
+                                <input 
+                                    type="text"
+                                    value={ this.state.project }
+                                    onChange={ (e) => { this.setState({ project: e.target.value });}}
+                                />
+                            </div>
+                            <div className="ui two bottom">
+                                <button 
+                                    className="ui basic primary button" 
+                                    type="submit"
+                                    onClick={ () => {this.handleFormSubmit()} }>
+                                    { submitBtnText }
+                                </button>
+                                <button className="ui basic negative button" onClick={ this.props.closeEditForm }>
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

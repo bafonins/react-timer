@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import './App.css';
 import uuid from 'uuid';
+import { createTimer } from './utils/timers';
 
 // components
 import EditableTimerList from './components/EditableTimerList';
@@ -38,15 +39,24 @@ class App extends Component {
 		});
 	}
 
+	handleCreateTimer = (title, project) => {
+		const timer = createTimer(title, project);
+		this.setState((prevState, props) => {
+			return {
+				timers: prevState.timers.concat(timer)
+			};
+		});
+	}
+
 	render() {
 		return (
-			<div className='App ui three column centered grid'>
-				<div className='column'>
+			<div className="App ui three column centered grid">
+				<div className="column">
 					<EditableTimerList
 						timers={ this.state.timers }
 					/>
 					<ToggleableTimerForm
-				
+						submitEditForm={ this.handleCreateTimer }
 					/>
 				</div>
 			</div>
