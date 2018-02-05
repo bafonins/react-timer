@@ -1,17 +1,23 @@
 import React from 'react';
 
-const TimerButton = ({ isOn }) => {
+const TimerButton = ({ isOn, startTimer, pauseTimer }) => {
     if (isOn) {
         return (
-            <div className="ui bottom attached orange basic button">
+            <button 
+                className="ui bottom attached yellow basic button"
+                onClick={ () => { pauseTimer(); }}    
+            >
                 Pause
-            </div>
+            </button>
         );
     } else {
         return (
-        <div className="ui bottom attached positive basic button">
+        <button 
+            className="ui bottom attached positive basic button"
+            onClick={ () => { startTimer(); }}    
+        >
             Start
-        </div>
+        </button>
         );
     }
 }

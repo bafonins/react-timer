@@ -3,6 +3,14 @@ import { getElapsedTimeString } from '../utils/timers';
 import TimerButton from './TimerButton';
 
 class Timer extends Component {
+
+    startTimer = () => {
+        this.props.startTimer(this.props.id);
+    }
+
+    pauseTimer = () => {
+        this.props.pauseTimer(this.props.id);
+    }
     
     render() {
         const elapsedVal = getElapsedTimeString({
@@ -38,7 +46,11 @@ class Timer extends Component {
                         </span>
                     </div>
                 </div>
-                <TimerButton isOn={ false } />
+                <TimerButton
+                    isOn={ this.props.runningSince || false } 
+                    startTimer={ this.startTimer }
+                    pauseTimer={ this.pauseTimer }    
+                />
             </div>
         );
     }

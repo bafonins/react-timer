@@ -75,6 +75,35 @@ class App extends Component {
 		});
 	}
 
+	handleStartTimer = (id) => {
+		this.setState({
+			timers: this.state.timers.map(t => {
+				if (id === t.id) {
+					return Object.assign({}, t, {
+						runningSince: Date.now()
+					});
+				} else {
+					return t;
+				}
+			})
+		});
+	}
+
+	handlePauseTimer = (id) => {
+		this.setState({
+			timers: this.state.timers.map(t => {
+				if (id === t.id) {
+					return Object.assign({}, t, {
+						elapsed: t.elapsed + (Date.now() - t.runningSince),
+						runningSince: null
+					});
+				} else {
+					return t;
+				}
+			})
+		});
+	}
+
 	render() {
 		return (
 			<div className="App ui three column centered grid">
@@ -83,6 +112,8 @@ class App extends Component {
 						timers={ this.state.timers }
 						submitEditForm={ this.handleUpdateTimer }
 						deleteTimer={ this.handleDeleteTimer }
+						startTimer={ this.handleStartTimer }
+						pauseTimer={ this.handlePauseTimer }
 					/>
 					<ToggleableTimerForm
 						submitEditForm={ this.handleCreateTimer }
