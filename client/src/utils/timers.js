@@ -10,3 +10,17 @@ export const createTimer = (title, project) => {
 
     return timer;
 }
+
+export const getElapsedTimeString = (timer) => {
+    let elapsed = timer.elapsed;
+
+    if (timer.runningSince) {
+        elapsed += Date.now() - timer.runningSince;
+    }
+
+    const s = Math.floor((elapsed / 1000) % 60);
+    const m = Math.floor((elapsed / 1000 / 60) % 60);
+    const h = Math.floor(elapsed / 1000 / 60 / 60);
+
+    return `${h}:${m}:${s}`;
+}
