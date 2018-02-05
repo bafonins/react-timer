@@ -39,12 +39,31 @@ class App extends Component {
 		});
 	}
 
-	handleCreateTimer = (title, project) => {
-		const timer = createTimer(title, project);
+	handleCreateTimer = (timer) => {
+		const newTimer = createTimer(timer.title, timer.project);
 		this.setState((prevState, props) => {
 			return {
-				timers: prevState.timers.concat(timer)
+				timers: prevState.timers.concat(newTimer)
 			};
+		});
+	}
+
+	handleUpdateTimer = (timer) => {
+		if (!timer || !timer.id) {
+			return;
+		}
+
+		this.setState({
+			timers: this.state.timers.map(t => {
+				if (timer.id === t.id) {
+					return Object.assign({}, timer, {
+						title: timer.title,
+						project: timer.project,
+					  });
+				} else {
+					return t;
+				}
+			})
 		});
 	}
 
@@ -54,6 +73,7 @@ class App extends Component {
 				<div className="column">
 					<EditableTimerList
 						timers={ this.state.timers }
+						submitEditForm={ this.handleUpdateTimer }
 					/>
 					<ToggleableTimerForm
 						submitEditForm={ this.handleCreateTimer }

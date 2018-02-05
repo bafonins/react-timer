@@ -12,6 +12,19 @@ class EditableTimer extends Component {
         };
     }
 
+    openEditForm = () => {
+        this.setState({ isEditFormOpen: true });
+    }
+
+    closeEditForm = () => {
+        this.setState({ isEditFormOpen: false });
+    }
+
+    submitEditForm = (timer) => {
+        this.props.submitEditForm(timer);
+        this.setState({ isEditFormOpen: false });
+    }
+
     render() {
         if (this.state.isEditFormOpen) {
             return (
@@ -19,6 +32,8 @@ class EditableTimer extends Component {
                     id={ this.props.id }
                     title={ this.props.title }
                     project={ this.props.project }
+                    submitEditForm={ this.submitEditForm }
+                    closeEditForm={ this.closeEditForm }
                 />
             );
         } else {
@@ -29,6 +44,7 @@ class EditableTimer extends Component {
                     project={ this.props.project }
                     elapsed={ this.props.elapsed }
                     runningSince={ this.props.runningSince }
+                    openEditForm={ this.openEditForm }
                 />
             );
         }

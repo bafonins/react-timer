@@ -12,11 +12,16 @@ class TimerForm extends Component {
     }
 
     handleFormSubmit = () => {
-        this.props.submitEditForm(this.state.title, this.state.project);
+        this.props.submitEditForm({
+            id: this.props.id,
+            title: this.state.title,
+            project: this.state.project
+        });
     }
 
     render() {
-        const submitBtnText = this.props.id 
+        const isEdit = this.props.id || false;
+        const submitBtnText = isEdit
             ? 'Edit'
             : 'Create';
 

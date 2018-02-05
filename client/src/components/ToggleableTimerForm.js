@@ -19,8 +19,8 @@ class ToggleableTimerForm extends Component {
         this.setState({ isOpen: false });
     }
 
-    submitEditForm = (title, project) => {
-        this.props.submitEditForm(title, project);
+    submitEditForm = (timer) => {
+        this.props.submitEditForm(timer);
         this.setState({ isOpen: false });
     }
 

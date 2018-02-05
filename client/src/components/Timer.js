@@ -22,7 +22,9 @@ class Timer extends Component {
                         <span className="right floated trash icon">
                             <i className="trash icon" />
                         </span>
-                        <span className="right floated edit icon">
+                        <span 
+                            className="right floated edit icon"
+                            onClick={ () => {this.props.openEditForm() } }>
                             <i className="edit icon" />
                         </span>
                     </div>
