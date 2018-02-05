@@ -45,6 +45,7 @@ class EditableTimer extends Component {
                     elapsed={ this.props.elapsed }
                     runningSince={ this.props.runningSince }
                     openEditForm={ this.openEditForm }
+                    deleteTimer={ this.props.deleteTimer }
                 />
             );
         }

@@ -19,7 +19,10 @@ class Timer extends Component {
                         </h2>
                     </div>
                     <div className="extra content">
-                        <span className="right floated trash icon">
+                        <span 
+                            className="right floated trash icon"
+                            onClick={ () => { this.props.deleteTimer(this.props.id) }}
+                            >
                             <i className="trash icon" />
                         </span>
                         <span 

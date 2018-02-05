@@ -15,6 +15,7 @@ class EditableTimerList extends Component {
                     runningSince={ t.runningSince }
                     key={ t.id }
                     submitEditForm={ this.props.submitEditForm }
+                    deleteTimer={ this.props.deleteTimer }
                 />
             );
         });

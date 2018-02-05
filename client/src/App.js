@@ -67,6 +67,14 @@ class App extends Component {
 		});
 	}
 
+	handleDeleteTimer = (id) => {
+		this.setState({
+			timers: this.state.timers.filter(t => {
+				return id !== t.id;
+			})
+		});
+	}
+
 	render() {
 		return (
 			<div className="App ui three column centered grid">
@@ -74,6 +82,7 @@ class App extends Component {
 					<EditableTimerList
 						timers={ this.state.timers }
 						submitEditForm={ this.handleUpdateTimer }
+						deleteTimer={ this.handleDeleteTimer }
 					/>
 					<ToggleableTimerForm
 						submitEditForm={ this.handleCreateTimer }
