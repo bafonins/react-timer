@@ -12,12 +12,12 @@ const TimerButton = ({ isOn, startTimer, pauseTimer }) => {
         );
     } else {
         return (
-        <button 
-            className="ui bottom attached positive basic button"
-            onClick={ () => { startTimer(); }}    
-        >
-            Start
-        </button>
+            <button 
+                className="ui bottom attached positive basic button"
+                onClick={ () => { startTimer(); }}    
+            >
+                Start
+            </button>
         );
     }
 }
