@@ -1,6 +1,5 @@
 // vendors
 import React, { Component } from 'react';
-import uuid from 'uuid';
 
 //style
 import 'semantic-ui-css/semantic.min.css';
@@ -13,6 +12,7 @@ import { fetchTimers } from './api/timers';
 // components
 import EditableTimerList from './components/EditableTimerList';
 import ToggleableTimerForm from './components/ToggleableTimerForm';
+import Loader from './components/Loader';
 
 class App extends Component {
 
@@ -20,28 +20,17 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-			timers: []
+			timers: [],
+			isLoading: true
 		};
 	}
 
 	componentDidMount() {
-		this.setState({
-			timers: [
-				{
-					title: "test-title",
-					project: "test-project",
-					elapsed: 3562017,
-					id: uuid.v4(),
-					runningSince: null
-				},
-				{
-					title: "test-title2",
-					project: "test-project2",
-					elapsed: 5123491,
-					id: uuid.v4(),
-					runningSince: null
-				}
-			]
+		fetchTimers(
+			timers => {this.setState({timers: timers});},
+			err => {console.log(err);}
+		).finally(() => {
+			this.setState({ isLoading: false});
 		});
 	}
 
@@ -110,7 +99,7 @@ class App extends Component {
 		});
 	}
 
-	render() {
+	pageLayout = () => {
 		return (
 			<div className="App ui three column centered grid">
 				<div className="column">
@@ -127,6 +116,18 @@ class App extends Component {
 				</div>
 			</div>
 		);
+	}
+
+	render() {
+		if (this.state.isLoading) {
+			return (
+				<Loader>
+					{ this.pageLayout() }
+				</Loader>
+			);
+		} else {
+			return this.pageLayout();
+		}
 	}
 }
 

@@ -8,47 +8,58 @@ const HEADERS = {
     'Content-Type': 'application/json',
 };
 
-export const fetchTimers = () => {
+export const fetchTimers = (success, failure) => {
     return request(
         fetch(BASE_PATH, {
             headers: GET_HEADERS
-        })
+        }),
+        success,
+        failure
     );
 }
 
-export const createTimer = (timer) => {
+export const createTimer = (timer, success, failure) => {
     return request(
         fetch(BASE_PATH, {
             method: 'POST',
             body: JSON.stringify(timer),
             headers: HEADERS
-        })
+        }),
+        success,
+        failure
     );
 }
 
-export const editTimer = (timer) => {
+export const editTimer = (timer, success, failure) => {
     return request(
         fetch(BASE_PATH, {
             method: 'PUT',
             body: JSON.stringify(timer),
             headers: HEADERS
-        })
+        }),
+        success,
+        failure
     );
 }
 
-export const deleteTimer = (timer) => {
+export const deleteTimer = (timer, success, failure) => {
     return request(
         fetch(BASE_PATH, {
             method: 'DELETE',
             body: JSON.stringify(timer),
             headers: HEADERS
-        })
+        }),
+        success,
+        failure
     );
 }
 
 // add basic response processing
-const request = (f) => {
-    return f.then(checkStatus).then(parseJSON);
+const request = (f, success, failure) => {
+    return f.then(checkStatus)
+        .then(parseJSON)
+        .then(success)
+        .catch(failure);
 }
 
 // https://github.com/github/fetch#handling-http-error-statuses
