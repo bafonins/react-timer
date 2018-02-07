@@ -7,7 +7,7 @@ import './App.css';
 
 // custom
 import { createTimer } from './utils/timers';
-import { fetchTimers } from './api/timers';
+import * as api from './api/timers';
 
 // components
 import EditableTimerList from './components/EditableTimerList';
@@ -26,9 +26,9 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		fetchTimers(
-			timers => {this.setState({timers: timers});},
-			err => {console.log(err);}
+		api.fetchTimers(
+			timers => this.setState({timers: timers}),
+			err => console.log(err)
 		).finally(() => {
 			this.setState({ isLoading: false});
 		});
@@ -41,6 +41,12 @@ class App extends Component {
 				timers: prevState.timers.concat(newTimer)
 			};
 		});
+
+		api.createTimer(
+			newTimer,
+			timers => this.setState({timers: timers}),
+			err => console.log(err)
+		);
 	}
 
 	handleUpdateTimer = (timer) => {
@@ -51,7 +57,7 @@ class App extends Component {
 		this.setState({
 			timers: this.state.timers.map(t => {
 				if (timer.id === t.id) {
-					return Object.assign({}, timer, {
+					return Object.assign({}, t, {
 						title: timer.title,
 						project: timer.project,
 					  });
