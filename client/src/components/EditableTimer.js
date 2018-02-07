@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import TimerForm from './TimerForm';
 import Timer from './Timer';
+import PropTypes from 'prop-types';
 
 class EditableTimer extends Component {
+
+    static propTypes = {
+        id: PropTypes.string,
+        title: PropTypes.string,
+        project: PropTypes.string,
+        elapsed: PropTypes.number,
+        runningSince: PropTypes.number,
+        submitEditForm: PropTypes.func,
+        deleteTimer: PropTypes.func,
+        startTimer: PropTypes.func,
+        pauseTimer: PropTypes.func
+    }
 
     constructor(props) {
         super(props);

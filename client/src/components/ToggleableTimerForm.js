@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import TimerForm from './TimerForm';
+import PropTypes from 'prop-types';
 
 class ToggleableTimerForm extends Component {
+
+    static propTypes = {
+        submitEditForm: PropTypes.func
+    }
 
     constructor(props) {
         super(props);

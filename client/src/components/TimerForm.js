@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class TimerForm extends Component {
+
+    static propTypes = {
+        closeEditForm: PropTypes.func,
+        submitEditForm: PropTypes.func,
+        title: PropTypes.string,
+        project: PropTypes.string,
+        id: PropTypes.string
+    }
 
     constructor(props) {
         super(props);

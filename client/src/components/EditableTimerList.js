@@ -1,5 +1,6 @@
 import React from 'react';
 import EditableTimer from './EditableTimer';
+import PropTypes from 'prop-types';
 
 const EditableTimerList = (props) => {
     const timers = props.timers;
@@ -25,6 +26,14 @@ const EditableTimerList = (props) => {
             { timersUI }
         </div>
     );
+}
+
+EditableTimerList.propTypes = {
+    timers: PropTypes.array,
+    submitEditForm: PropTypes.func,
+    deleteTimer: PropTypes.func,
+    startTimer: PropTypes.func,
+    pauseTimer: PropTypes.func
 }
 
 export default EditableTimerList;

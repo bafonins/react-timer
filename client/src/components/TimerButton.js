@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const TimerButton = ({ isOn, startTimer, pauseTimer }) => {
     if (isOn) {
@@ -20,6 +21,12 @@ const TimerButton = ({ isOn, startTimer, pauseTimer }) => {
             </button>
         );
     }
+}
+
+TimerButton.propTypes = {
+    isOn: PropTypes.bool,
+    startTimer: PropTypes.func,
+    pauseTimer: PropTypes.func
 }
 
 export default TimerButton;

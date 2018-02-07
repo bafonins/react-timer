@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import { getElapsedTimeString } from '../utils/timers';
 import TimerButton from './TimerButton';
+import PropTypes from 'prop-types';
 
 class Timer extends Component {
+
+    static propTypes = {
+        id: PropTypes.string,
+        title: PropTypes.string,
+        project: PropTypes.string,
+        elapsed: PropTypes.number,
+        runningSince: PropTypes.number,
+        openEditForm: PropTypes.func,
+        deleteTimer: PropTypes.func,
+        startTimer: PropTypes.func,
+        pauseTimer: PropTypes.func
+    }
 
     startTimer = () => {
         this.props.startTimer(this.props.id);
@@ -55,7 +68,7 @@ class Timer extends Component {
                     </div>
                 </div>
                 <TimerButton
-                    isOn={ this.props.runningSince || false } 
+                    isOn={ !!this.props.runningSince } 
                     startTimer={ this.startTimer }
                     pauseTimer={ this.pauseTimer }    
                 />
