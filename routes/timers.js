@@ -78,8 +78,8 @@ router.delete('/', (req, res) => {
             console.log(err);
             res.status(500);
         } else {
-            let timers = JSON.parse(data);
-            timers = timers.reduce((memo, timer) => {
+            const timers = JSON.parse(data);
+            ts = timers.reduce((memo, timer) => {
                 if (timer.id === req.body.id) {
                     return memo;
                 } else {
@@ -87,7 +87,7 @@ router.delete('/', (req, res) => {
                 }
             }, []);
 
-            fs.writeFile(FILE_PATH, JSON.stringify(timers, null, 4), (err) => {
+            fs.writeFile(FILE_PATH, JSON.stringify(ts, null, 4), (err) => {
                 if (err) {
                     console.log(err);
                     res.status(500);

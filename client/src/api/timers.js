@@ -42,11 +42,11 @@ export const editTimer = (timer, success, failure) => {
     );
 }
 
-export const deleteTimer = (timer, success, failure) => {
+export const deleteTimer = (id, success, failure) => {
     return request(
         fetch(BASE_PATH, {
             method: 'DELETE',
-            body: JSON.stringify(timer),
+            body: JSON.stringify(id),
             headers: HEADERS
         }),
         success,

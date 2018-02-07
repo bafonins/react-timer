@@ -66,6 +66,12 @@ class App extends Component {
 				}
 			})
 		});
+
+		api.editTimer(
+			timer,
+			data => console.log(data),
+			err => console.log(err)
+		);
 	}
 
 	handleDeleteTimer = (id) => {
@@ -74,6 +80,12 @@ class App extends Component {
 				return id !== t.id;
 			})
 		});
+
+		api.deleteTimer(
+			{id: id},
+			data => console.log(data),
+			err => console.log(err)
+		);
 	}
 
 	handleStartTimer = (id) => {
