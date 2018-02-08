@@ -6,7 +6,7 @@ class ToggleableTimerForm extends Component {
 
     static propTypes = {
         submitEditForm: PropTypes.func
-    }
+    };
 
     constructor(props) {
         super(props);

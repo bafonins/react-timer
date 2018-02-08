@@ -11,4 +11,8 @@ const Loader = (props) => {
     );
 }
 
+Loader.propTypes = {
+    children: PropTypes.element.isRequired
+}
+
 export default Loader;

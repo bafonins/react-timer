@@ -15,7 +15,7 @@ class Timer extends Component {
         deleteTimer: PropTypes.func,
         startTimer: PropTypes.func,
         pauseTimer: PropTypes.func
-    }
+    };
 
     startTimer = () => {
         this.props.startTimer(this.props.id);

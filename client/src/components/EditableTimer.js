@@ -15,7 +15,7 @@ class EditableTimer extends Component {
         deleteTimer: PropTypes.func,
         startTimer: PropTypes.func,
         pauseTimer: PropTypes.func
-    }
+    };
 
     constructor(props) {
         super(props);

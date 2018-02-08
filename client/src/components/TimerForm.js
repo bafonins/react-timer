@@ -9,7 +9,7 @@ class TimerForm extends Component {
         title: PropTypes.string,
         project: PropTypes.string,
         id: PropTypes.string
-    }
+    };
 
     constructor(props) {
         super(props);
