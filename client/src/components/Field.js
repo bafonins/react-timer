@@ -31,8 +31,8 @@ class Field extends Component {
         const value = e.target.value;
         
         let error = false;
-        if (this.state.validation) {
-            error = this.state.validation(value);
+        if (this.props.validation) {
+            error = this.props.validation(value);
         }
 
         this.setState({ value, error });
