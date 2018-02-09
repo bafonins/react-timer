@@ -38,7 +38,9 @@ class TimerForm extends Component {
         return false;
     }
 
-    handleFormSubmit = () => {
+    handleFormSubmit = (e) => {
+        e.preventDefault();
+
         this.props.submitEditForm({
             id: this.props.id,
             title: this.state.fields.title,
@@ -68,7 +70,7 @@ class TimerForm extends Component {
             <div className="ui centered card">
                 <div className="content">
                     <div className="ui form">
-                        <form onSubmit={ (e) => { e.preventDefault(); }}>
+                        <form onSubmit= { this.handleFormSubmit }>
                             <Field 
                                 placeholder="Title"
                                 name="title"
@@ -90,10 +92,14 @@ class TimerForm extends Component {
                                     className={ "ui basic primary button left floated" }
                                     type="submit"
                                     disabled={ this.disableSubmit() }
-                                    onClick={ () => {this.handleFormSubmit()} }>
+                                >
                                     { submitBtnText }
                                 </button>
-                                <button className="ui basic negative button right floated" onClick={ this.props.closeEditForm }>
+                                <button 
+                                    className="ui basic negative button right floated" 
+                                    onClick={ this.props.closeEditForm }
+                                    type="button"
+                                >
                                     Cancel
                                 </button>
                             </div>
