@@ -25,6 +25,19 @@ class TimerForm extends Component {
         };
     }
 
+    disableSubmit = () => {
+        const title = this.state.fields.title;
+        const project = this.state.fields.project;
+        const fieldErrors = this.state.fieldErrors;
+        const errs = Object.keys(fieldErrors).filter(k => fieldErrors[k]);
+
+        if (!title) return true;
+        if (!project) return true;
+        if (errs.length) return true;
+
+        return false;
+    }
+
     handleFormSubmit = () => {
         this.props.submitEditForm({
             id: this.props.id,
@@ -56,30 +69,27 @@ class TimerForm extends Component {
                 <div className="content">
                     <div className="ui form">
                         <form onSubmit={ (e) => { e.preventDefault(); }}>
-                            <div className="field">
-                                <label>Title</label>
-                                <Field 
-                                    placeholder="Title"
-                                    name="title"
-                                    value={ this.state.fields.title }
-                                    onChange= { this.onInputChange }
-                                    validation= {(val) => { return isEmptyString(val) ? 'Field cannot be empty' : false}}
-                                />
-                            </div>
-                            <div className="field">
-                                <label>Project</label>
-                                <Field 
-                                    placeholder="Project"
-                                    name="project"
-                                    value={ this.state.fields.project }
-                                    onChange={ this.onInputChange }
-                                    validation= {(val) => { return isEmptyString(val) ? 'Field cannot be empty' : false}} 
-                                />                                   
-                            </div>
+                            <Field 
+                                placeholder="Title"
+                                name="title"
+                                label="Title"
+                                value={ this.state.fields.title }
+                                onChange= { this.onInputChange }
+                                validation= {(val) => { return isEmptyString(val) ? 'Field cannot be empty' : false}}
+                            />
+                            <Field 
+                                placeholder="Project"
+                                name="project"
+                                label="Project"
+                                value={ this.state.fields.project }
+                                onChange={ this.onInputChange }
+                                validation= {(val) => { return isEmptyString(val) ? 'Field cannot be empty' : false}} 
+                            />                                   
                             <div className="ui two bottom">
                                 <button 
-                                    className="ui basic primary button left floated" 
+                                    className={ "ui basic primary button left floated" }
                                     type="submit"
+                                    disabled={ this.disableSubmit() }
                                     onClick={ () => {this.handleFormSubmit()} }>
                                     { submitBtnText }
                                 </button>

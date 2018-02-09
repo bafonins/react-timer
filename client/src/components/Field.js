@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 class Field extends Component {
 
@@ -8,7 +9,8 @@ class Field extends Component {
         value: PropTypes.string,
         validation: PropTypes.func,
         onChange: PropTypes.func.isRequired,
-        placeholder: PropTypes.string
+        placeholder: PropTypes.string,
+        label: PropTypes.string
     };
 
     constructor(props) {
@@ -40,12 +42,22 @@ class Field extends Component {
     }
 
     render() {
+        const inputClasses = classNames({
+            'field': true,
+            'error': this.state.error
+        });
+
         return (
-            <div>
+            <div className={ inputClasses }>
+                <label htmlFor={ this.props.name }>
+                    { this.props.label }
+                </label>
                 <input
+                    type="text"
                     placeholder={ this.props.placeholder }
                     value={ this.state.value }
                     onChange={ this.onChange } 
+                    name={ this.props.name }
                 />
                 <span style={{ color: 'red'}}>{ this.state.error }</span>
             </div>
