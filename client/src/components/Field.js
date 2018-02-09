@@ -40,13 +40,17 @@ class Field extends Component {
     }
 
     render() {
-        <div>
-            <input
-                placeholder={ this.props.placeholder }
-                value={ this.state.value }
-                onChange={ this.onChange } 
-            />
-            <span style={{ color: 'red'}}>{ this.state.error }</span>
-        </div>
+        return (
+            <div>
+                <input
+                    placeholder={ this.props.placeholder }
+                    value={ this.state.value }
+                    onChange={ this.onChange } 
+                />
+                <span style={{ color: 'red'}}>{ this.state.error }</span>
+            </div>
+        );
     }
 }
+
+export default Field;
