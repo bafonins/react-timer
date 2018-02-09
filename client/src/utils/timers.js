@@ -11,6 +11,10 @@ export const createTimer = (title, project) => {
     return timer;
 }
 
+export const isEmptyString = (str) => {
+    return str.trim().length <= 0;
+}
+
 export const getElapsedTimeString = (timer) => {
     let elapsed = timer.elapsed;
 

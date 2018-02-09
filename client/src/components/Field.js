@@ -28,15 +28,15 @@ class Field extends Component {
 
     onChange = (e) => {
         const name = this.props.name;
-        const value = this.state.value;
-
+        const value = e.target.value;
+        
         let error = false;
         if (this.state.validation) {
             error = this.state.validation(value);
         }
 
         this.setState({ value, error });
-        this.props.onChange(name, value. error);
+        this.props.onChange(name, value, error);
     }
 
     render() {
