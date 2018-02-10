@@ -25,6 +25,10 @@ class TimerForm extends Component {
         };
     }
 
+    /**
+     * Validates values of the form. Returns {@code true} if the form cotnains
+     * wrong data and the submit button should be disabled, {@code false} otherwise.
+     */
     disableSubmit = () => {
         const title = this.state.fields.title;
         const project = this.state.fields.project;
