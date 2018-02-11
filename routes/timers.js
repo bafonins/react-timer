@@ -6,6 +6,58 @@ const resolve = path.resolve;
 
 const FILE_PATH = resolve('mock-data.json');
 
+router.post('/start', (req, res, next) => {
+    fs.readFile(FILE_PATH, (err, data) => {
+        if (err) {
+            console.log(err);
+            res.status(500);
+        } else {
+            const id = req.body.id;
+            const startDate = req.body.start;
+            const timers = JSON.parse(data);
+            console.log(startDate);
+            timers.forEach(t => {
+                if (t.id === id) {
+                    t.runningSince = startDate;
+                }
+            });
+
+            fs.writeFile(FILE_PATH, JSON.stringify(timers, null, 4), (err) => {
+                if (err) {
+                    console.log(err);
+                    res.status(500);
+                } else {
+                    res.json({});
+                }
+            })
+        }
+    })
+});
+
+router.post('/pause', (req, res, next) => {
+    fs.readFile(FILE_PATH, (err, data) => {
+        const timers = JSON.parse(data);
+        const id = req.body.id;
+        const pauseDate = req.body.pause;
+        timers.forEach(t => {
+            if (t.id === id) {
+                const delta = pauseDate - t.runningSince;
+                t.elapsed += delta;
+                t.runningSince = null;
+            }
+        });
+
+        fs.writeFile(FILE_PATH, JSON.stringify(timers, null, 4), (err) => {
+            if (err) {
+                console.log(err);
+                res.status(500);
+            } else {
+                res.json({});
+            }
+        });
+    });
+});
+
 router.get('/', (req, res, next) => {
     fs.readFile(FILE_PATH, (err, data) => {
         if (err) {
